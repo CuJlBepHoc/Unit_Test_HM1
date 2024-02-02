@@ -1,5 +1,6 @@
 package seminars.first.Shop;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -18,13 +19,19 @@ public class Shop {
     // Метод должен вернуть отсортированный по возрастанию по цене список продуктов
     public List<Product> sortProductsByPrice() {
         // Допишите реализацию метода самостоятельно
-        return null;
+        Comparator<Product> byPrice = Comparator.comparing(Product::getCost);
+        products.sort(byPrice);
+        return products;
     }
+
 
     // Метод должен вернуть самый дорогой продукт
     public Product getMostExpensiveProduct() {
         // Допишите реализацию метода самостоятельно
-        return null;
+        if (products == null || products.isEmpty()) {
+            // Проверяем наличие продуктов
+            return null;
+        }
+        return Collections.max(products, Comparator.comparing(Product::getCost));
     }
-
 }
